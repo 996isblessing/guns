@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.modular.user.mapper.MyUserMapper">
+    <resultMap id="UserMap" type="com.stylefeng.guns.rest.user.User">
+        <id column="UUID" property="uuid" jdbcType="INTEGER"></id>
+        <result column="user_sex" property="sex" jdbcType="INTEGER"></result>
+        <result column="life_state" property="lifeState" jdbcType="INTEGER"></result>
+        <result column="email" property="email" jdbcType="VARCHAR"></result>
+        <result column="user_name" property="username" jdbcType="VARCHAR"></result>
+        <result column="user_pwd" property="password" jdbcType="VARCHAR"></result>
+        <result column="nick_name" property="nickname" jdbcType="VARCHAR"></result>
+        <result column="birthday" property="birthday" jdbcType="VARCHAR"></result>
+        <result column="user_phone" property="phone" jdbcType="VARCHAR"></result>
+        <result column="address" property="address" jdbcType="VARCHAR"></result>
+        <result column="biography" property="biography" jdbcType="VARCHAR"></result>
+        <result column="head_url" property="headAddress" jdbcType="VARCHAR"></result>
+        <result column="begin_time" property="createTime" jdbcType="TIMESTAMP"></result>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+
+    <!--查找用户信息-->
+    <select id="SelectgetUserInfo" resultType="com.stylefeng.guns.rest.user.User" resultMap="UserMap">
+        select UUID,user_sex,life_state,email,user_name,nick_name,birthday,user_phone,address,biography,head_url,begin_time,update_time
+        from mtime_user_t
+        where user_name = #{username}
+    </select>
+    <!--修改用户信息-->
+    <update id="UpdateUserInfo" parameterType="com.stylefeng.guns.rest.user.User">
+        update mtime_user_t
+        <set>
+            <if test="nickname!=null">nick_name = #{nickname},</if>
+            <if test="email!=null">email = #{email,jdbcType=VARCHAR}, </if>
+            <if test="phone!=null">user_phone = #{phone},</if>
+            <if test="sex!=null">user_sex = #{sex},</if>
+            <if test="birthday!=null">birthday = #{birthday},</if>
+            <if test="lifeState!=null">life_state = #{lifeState},</if>
+            <if test="biography!=null">biography = #{biography},</if>
+            <if test="address!=null">address = #{address},</if>
+            update_time = now()
+        </set>
+        where user_name = #{username}
+    </update>
+    <!--查找用户信息-->
+    <select id="SelectgetUserInfoByUid" resultType="com.stylefeng.guns.rest.user.User" resultMap="UserMap">
+        select UUID,user_sex,life_state,email,user_name,nick_name,birthday,user_phone,address,biography,head_url,begin_time,update_time
+        from mtime_user_t
+        where UUID = #{UUID}
+    </select>
+
+</mapper>
