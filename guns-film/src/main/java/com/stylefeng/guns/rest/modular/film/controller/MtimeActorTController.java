@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.Serializable;
 
@@ -25,6 +26,7 @@ public class MtimeActorTController {
     IMtimeActorTService iMtimeActorTService;
 
     @RequestMapping("/test")
+    @ResponseBody
     public MtimeActorT queryById(int id){
         MtimeActorT actorT = iMtimeActorTService.selectById(id);
         return actorT;
