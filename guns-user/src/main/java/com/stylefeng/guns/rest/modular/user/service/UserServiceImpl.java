@@ -1,17 +1,24 @@
 package com.stylefeng.guns.rest.modular.user.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.rest.modular.user.mapper.MyUserMapper;
-import com.stylefeng.guns.rest.user.User;
+import com.stylefeng.guns.rest.persistence.dao.MtimeUserTMapper;
+import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
+
 import com.stylefeng.guns.rest.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @Component
 public class UserServiceImpl implements UserService {
+   // @Autowired(required = false)
+  //  MyUserMapper userMapper;
+
     @Autowired(required = false)
-    MyUserMapper userMapper;
+    MtimeUserTMapper userTMapper;
 
     @Override
     public void mytest() {
@@ -24,13 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfo(String username) {
-        User user = userMapper.SelectgetUserInfo(username);
-        return user;
+    public MtimeUserT getUserInfo(String username) {
+        Map<String,Object> map = new HashMap();
+        map.put("user_name",username);
+        MtimeUserT userT =userTMapper.selectByMap(map).get(0);
+        return  userT;
     }
 
-    @Override
-    public int updateUserInfo(User user) {
-        return userMapper.UpdateUserInfo(user);
-    }
+
 }

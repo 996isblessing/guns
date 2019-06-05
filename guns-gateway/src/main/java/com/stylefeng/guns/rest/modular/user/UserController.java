@@ -1,13 +1,11 @@
 package com.stylefeng.guns.rest.modular.user;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.stylefeng.guns.rest.user.User;
+import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
 import com.stylefeng.guns.rest.user.UserInfo;
 import com.stylefeng.guns.rest.user.UserService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +28,7 @@ public class UserController {
     @GetMapping("/getUserInfo")
     public UserInfo getUserInfo(String username) {
         String username1 = "litiansuo";
-        User user =userService.getUserInfo(username);
+        MtimeUserT user =userService.getUserInfo(username);
         UserInfo userInfo = new UserInfo();
         userInfo.setData(user);
         return userInfo;

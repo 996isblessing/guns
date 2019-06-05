@@ -1,8 +1,10 @@
 package com.stylefeng.guns.rest.user;
 
+import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
+
 public class UserInfo {
     int status = 0;
-    User data;
+    MtimeUserT data;
 
     public int getStatus() {
         return status;
@@ -12,11 +14,11 @@ public class UserInfo {
         this.status = status;
     }
 
-    public User getData() {
+    public MtimeUserT getData() {
         return data;
     }
 
-    public void setData(User data) {
+    public void setData(MtimeUserT data) {
         this.data = data;
     }
 }
