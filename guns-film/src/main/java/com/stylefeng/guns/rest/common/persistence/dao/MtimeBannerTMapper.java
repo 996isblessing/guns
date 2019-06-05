@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stylefeng
- * @since 2019-06-04
+ * @since 2019-06-05
  */
 public interface MtimeBannerTMapper extends BaseMapper<MtimeBannerT> {
 

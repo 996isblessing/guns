@@ -4,6 +4,7 @@ import com.stylefeng.guns.rest.common.persistence.model.MtimeFilmT;
 import com.stylefeng.guns.rest.common.persistence.dao.MtimeFilmTMapper;
 import com.stylefeng.guns.rest.modular.film.service.IMtimeFilmTService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**

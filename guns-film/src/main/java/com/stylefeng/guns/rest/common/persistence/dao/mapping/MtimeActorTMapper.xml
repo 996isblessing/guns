@@ -8,5 +8,4 @@
         <result column="actor_name" property="actorName" />
         <result column="actor_img" property="actorImg" />
     </resultMap>
-
 </mapper>
