@@ -3,6 +3,7 @@ package com.stylefeng.guns.rest.modular.film.controller;
 
 import com.stylefeng.guns.rest.common.persistence.model.MtimeActorT;
 import com.stylefeng.guns.rest.modular.film.service.IMtimeActorTService;
+import com.stylefeng.guns.rest.modular.film.service.impl.apiserviceimpl.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +25,8 @@ public class MtimeActorTController {
 
     @Autowired
     IMtimeActorTService iMtimeActorTService;
+    @Autowired
+    FilmServiceImpl filmService;
 
     @RequestMapping("/test")
     @ResponseBody
