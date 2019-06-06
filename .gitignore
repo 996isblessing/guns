@@ -21,8 +21,12 @@ logs/
 *.zip
 *.tar.gz
 *.rar
+<<<<<<< HEAD
 *.tz
 *.tmp
+=======
+*.gz
+>>>>>>> f328408b7322707022ca6c7cdeddfdbb3ad8e458
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

@@ -51,14 +51,14 @@ public class EntityGenerator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns_rest?serverTimezone=GMT&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns_film?serverTimezone=GMT&characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略,驼峰式命名
-        strategy.setInclude(new String[]{"mtime_source_dict_t"});//此处是表名
+        strategy.setInclude(new String[]{"mtime_banner_t"});//此处是表名
 
 
 

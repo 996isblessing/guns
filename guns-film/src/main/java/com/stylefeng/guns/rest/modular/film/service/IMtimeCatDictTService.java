@@ -2,6 +2,7 @@ package com.stylefeng.guns.rest.modular.film.service;
 
 import com.stylefeng.guns.rest.common.persistence.model.MtimeCatDictT;
 import com.baomidou.mybatisplus.service.IService;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @author stylefeng
  * @since 2019-06-04
  */
+
 public interface IMtimeCatDictTService extends IService<MtimeCatDictT> {
 
 }

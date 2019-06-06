@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author stylefeng
- * @since 2019-06-04
+ * @since 2019-06-05
  */
 @Service
 public class MtimeBannerTServiceImpl extends ServiceImpl<MtimeBannerTMapper, MtimeBannerT> implements IMtimeBannerTService {

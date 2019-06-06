@@ -4,11 +4,11 @@ import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@EnableDubboConfiguration
 @SpringBootApplication(scanBasePackages = {"com.stylefeng.guns"})
-public class GunsRestApplication {
+@EnableDubboConfiguration
+public class GunsFilmApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GunsRestApplication.class, args);
+        SpringApplication.run(GunsFilmApplication.class, args);
     }
 }

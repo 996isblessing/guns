@@ -3,9 +3,14 @@ package com.stylefeng.guns.rest.common.aop;
 import com.stylefeng.guns.core.aop.BaseControllerExceptionHandler;
 import com.stylefeng.guns.core.base.tips.ErrorTip;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
+<<<<<<< HEAD
 import com.stylefeng.guns.rest.modular.exception.ServerException;
 import com.stylefeng.guns.rest.modular.exception.UserException;
 import com.stylefeng.guns.rest.user.result.StatusResultVo;
+=======
+import com.stylefeng.guns.rest.exception.MyGunsException;
+import com.stylefeng.guns.rest.user.Info;
+>>>>>>> f328408b7322707022ca6c7cdeddfdbb3ad8e458
 import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +31,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
+<<<<<<< HEAD
     //用户名密码错误异常
     @ExceptionHandler(value = UserException.class)
     @ResponseStatus(HttpStatus.OK)
@@ -48,6 +54,18 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
         return resultVo;
     }
 
+=======
+
+    @ExceptionHandler(MyGunsException.class)
+    @ResponseBody
+    public Info myGunsExceptionHandler(MyGunsException e){
+        Info info = new Info();
+        info.setStatus(1);
+        info.setMsg(e.getMessage());
+        e.printStackTrace();
+        return info;
+    }
+>>>>>>> f328408b7322707022ca6c7cdeddfdbb3ad8e458
     /**
      * 拦截jwt相关异常
      */

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2019-06-04
+ * @since 2019-06-05
  */
 @TableName("mtime_banner_t")
 public class MtimeBannerT extends Model<MtimeBannerT> {

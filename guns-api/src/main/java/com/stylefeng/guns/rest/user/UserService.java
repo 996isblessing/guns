@@ -9,6 +9,8 @@ public interface UserService {
     public int mytest1();
     //获取用户信息的接口
     public MtimeUserT getUserInfo(String username);
+    //更新用户信息
+    public Integer updateUserInfo(MtimeUserT userT);
 
     //用户名检查
     StatusResultVo checkName(String username);
