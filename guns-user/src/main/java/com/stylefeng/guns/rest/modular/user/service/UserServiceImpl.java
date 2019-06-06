@@ -1,13 +1,16 @@
 package com.stylefeng.guns.rest.modular.user.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.rest.persistence.dao.MtimeUserTMapper;
 import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
 
 import com.stylefeng.guns.rest.user.UserService;
 import com.stylefeng.guns.rest.user.result.StatusResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Jedis;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +41,14 @@ public class UserServiceImpl implements UserService {
         map.put("user_name",username);
         MtimeUserT userT =userTMapper.selectByMap(map).get(0);
         return  userT;
+    }
+
+    @Override
+    public Integer updateUserInfo(MtimeUserT userT) {
+
+        Integer i = userTMapper.updateById(userT);
+        EntityWrapper<MtimeUserT> ew = new EntityWrapper<>();
+        return i;
     }
 
     @Override
