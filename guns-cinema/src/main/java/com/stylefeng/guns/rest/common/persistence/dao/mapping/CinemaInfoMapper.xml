@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.common.persistence.dao.CinemaInfoMapper">
+
+    <resultMap id="mapCinemaInfo" type="com.stylefeng.guns.rest.common.persistence.model.CinemaInfo">
+        <result property="cinemaId" column="UUID"/>
+        <result property="imgUrl" column="img_address"/>
+        <result property="cinemaName" column="cinema_name"/>
+        <result property="cinemaAdress" column="cinema_address"/>
+        <result property="cinemaPhone" column="cinema_phone"/>
+    </resultMap>
+<select id="selectById" resultMap="mapCinemaInfo">
+    SELECT UUID,img_address,cinema_name,cinema_address,cinema_phone FROM mtime_cinema_t where UUID = #{id};
+</select>
+
+</mapper>
