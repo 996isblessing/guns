@@ -3,10 +3,13 @@ package com.stylefeng.guns.rest.modular.auth.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.rest.exception.MyException;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
+import com.stylefeng.guns.rest.modular.exception.ServerException;
+import com.stylefeng.guns.rest.modular.exception.UserException;
 import com.stylefeng.guns.rest.user.AuthResultVo;
 import com.stylefeng.guns.rest.user.UserService;
 
@@ -53,16 +56,23 @@ public class AuthController {
                 authResultVo.getData().setToken(token);
                 return authResultVo;
             } else {
-                authResultVo.setStatus(1);
-                authResultVo.setMsg("用户名或密码错误");
-                StatusResultVo statusResultVo = new StatusResultVo();
-                return authResultVo;
+                throw new UserException("用户名密码错误");
+//                throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
+//                throw new UserException(1,"用户名或密码错误");
+//                MyException e = new MyException();
+//                e.setMsg("用户名或密码错误");
+//                e.setStatus(1);
+//                throw e;
+//                authResultVo.setStatus(1);
+//                authResultVo.setMsg("用户名或密码错误");
+//                StatusResultVo statusResultVo = new StatusResultVo();
+//                return authResultVo;
             }
-        } catch (Exception e){
+        } catch (UserException e){
+            throw new UserException("用户名或密码错误");
+        } catch (Exception e) {
             e.printStackTrace();
-            authResultVo.setMsg("系统出现异常，请联系管理员");
-            authResultVo.setStatus(999);
-            return  authResultVo;
+            throw new ServerException();
         }
     }
 }

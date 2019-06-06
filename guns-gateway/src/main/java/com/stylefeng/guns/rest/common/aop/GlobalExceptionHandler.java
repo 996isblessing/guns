@@ -3,6 +3,9 @@ package com.stylefeng.guns.rest.common.aop;
 import com.stylefeng.guns.core.aop.BaseControllerExceptionHandler;
 import com.stylefeng.guns.core.base.tips.ErrorTip;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.rest.modular.exception.ServerException;
+import com.stylefeng.guns.rest.modular.exception.UserException;
+import com.stylefeng.guns.rest.user.result.StatusResultVo;
 import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,28 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
+    //用户名密码错误异常
+    @ExceptionHandler(value = UserException.class)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public StatusResultVo handlerMyException(UserException e) {
+        StatusResultVo resultVo = new StatusResultVo();
+        resultVo.setStatus(1);
+        resultVo.setMsg("用户名或密码错误");
+        return resultVo;
+    }
+
+    //服务器异常
+    @ExceptionHandler(value = ServerException.class)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public StatusResultVo handlerMyException( ServerException e) {
+        StatusResultVo resultVo = new StatusResultVo();
+        resultVo.setStatus(999);
+        resultVo.setMsg("系统出现异常，请联系管理员");
+        return resultVo;
+    }
 
     /**
      * 拦截jwt相关异常
