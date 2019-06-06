@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
 import com.stylefeng.guns.rest.user.UserInfo;
 import com.stylefeng.guns.rest.user.UserService;
+import com.stylefeng.guns.rest.user.result.StatusResultVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +28,26 @@ public class UserController {
     @ResponseBody
     @GetMapping("/getUserInfo")
     public UserInfo getUserInfo(String username) {
-        String username1 = "litiansuo";
+        String username1 = "admin";
         MtimeUserT user =userService.getUserInfo(username);
         UserInfo userInfo = new UserInfo();
         userInfo.setData(user);
         return userInfo;
     }
 
+    //用户名验证
+    @RequestMapping("/check")
+    @ResponseBody
+    public StatusResultVo checkName(String username){
+        return userService.checkName(username);
+    }
+
+    //用户注册
+    @RequestMapping("/register")
+    @ResponseBody
+    public StatusResultVo userRegister(MtimeUserT user){
+        return userService.userRegister(user);
+    }
 
 
 }

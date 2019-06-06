@@ -20,4 +20,36 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <insert id="userRegister">
+        insert into mtime_user_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_name,user_pwd,
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                user_phone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{username},#{password},
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select user_name,user_pwd from mtime_user_t where user_name = #{username}
+    </select>
+
 </mapper>
