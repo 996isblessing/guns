@@ -89,6 +89,7 @@ public class UserController {
         userInfo.setData(user1);
         return userInfo;
     }
+
     //用户名验证
     @RequestMapping("/check")
     @ResponseBody

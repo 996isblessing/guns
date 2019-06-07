@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import redis.clients.jedis.Jedis;
+
 import javax.annotation.Resource;
 
 /**
@@ -28,7 +30,7 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Reference
+    @Reference(check = false)
     UserService userService;
 
     @Resource(name = "simpleValidator")
@@ -40,9 +42,17 @@ public class AuthController {
         AuthResultVo authResultVo = new AuthResultVo();
         try {
             if (validate) {
+                Jedis jedis = new Jedis();
+                String username = authRequest.getUserName();
+
                 final String randomKey = jwtTokenUtil.getRandomKey();
                 final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
                 ResponseEntity<AuthResponse> ok = ResponseEntity.ok(new AuthResponse(token, randomKey));
+                //将登录时的token存到redis
+                jedis.setex(token,1800,randomKey);
+//                jedis.hset(username,"randomKey",randomKey);
+//                jedis.hset(username,"token",token);
+//                jedis.expire(username,1800);
                 authResultVo.setStatus(0);
                 authResultVo.getData().setRandomKey(randomKey);
                 authResultVo.getData().setToken(token);
