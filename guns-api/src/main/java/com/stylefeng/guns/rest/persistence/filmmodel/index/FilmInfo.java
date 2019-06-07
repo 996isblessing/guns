@@ -90,7 +90,7 @@ public class FilmInfo {
 
     @Override
     public String toString() {
-        return "FilmInfo{" +
+        return "MyFilmInfo{" +
                 "filmId=" + filmId +
                 ", filmType=" + filmType +
                 ", imgAddress='" + imgAddress + '\'' +

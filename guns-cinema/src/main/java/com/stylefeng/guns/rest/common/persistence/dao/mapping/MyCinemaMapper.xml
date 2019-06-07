@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.common.persistence.dao.MyCinemaMapper">
+    <resultMap id="fieldMap" type="com.stylefeng.guns.rest.modular.cinema.model.CinemaData">
+        <association property="myFilmInfo" javaType="com.stylefeng.guns.rest.modular.cinema.model.MyFilmInfo">
+            <result property="filmId" column="film_id"/>
+            <result property="filmName" column="film_name"/>
+            <result property="filmType" column="film_language"/>
+            <result property="imgAddress" column="hfia"/>
+            <result property="filmCats" column="film_cats"/>
+            <result property="filmLength" column="film_length"/>
+        </association>
+        <association property="cinemaInfo" javaType="com.stylefeng.guns.rest.modular.cinema.model.CinemaInfo">
+            <result property="cinemaId" column="UUID"/>
+            <result property="imgUrl" column="img_address"/>
+            <result property="cinemaName" column="cinema_name"/>
+            <result property="cinemaAddress" column="cinema_address"/>
+            <result property="cinemaPhone" column="cinema_phone"/>
+        </association>
+        <association property="hallInfo" javaType="com.stylefeng.guns.rest.modular.cinema.model.HallInfo">
+            <result property="hallField" column="hall_id"/>
+            <result property="hallName" column="hall_name"/>
+            <result property="price" column="price"/>
+            <result property="seatFile" column="seat_address"/>
+            <result property="soldSeats" column="film_preSaleNum"/>
+        </association>
+    </resultMap>
+    <select id="getFieldInfo" resultMap="fieldMap">
+        SELECT hf.film_id,hf.film_name,film_language,hf.img_address as hfia,hf.film_cats,film_length,
+        c.UUID,c.img_address,c.cinema_name,c.cinema_address,c.cinema_phone,
+        f.hall_id,f.hall_name,f.price,seat_address,fi.film_preSaleNum
+        FROM `mtime_hall_film_info_t` hf
+        LEFT JOIN mtime_field_t f ON f.film_id = hf.film_id
+        LEFT JOIN mtime_cinema_t c ON c.UUID = f.cinema_id
+        LEFT JOIN mtime_hall_dict_t hd ON f.hall_id = hd.UUID
+        LEFT JOIN mtime_film_t fi ON fi.UUID = hf.film_id
+        WHERE f.UUID = #{cinemaId} AND f.cinema_id = #{fieldId}
+    </select>
+</mapper>

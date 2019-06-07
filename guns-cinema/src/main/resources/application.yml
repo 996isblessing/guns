@@ -27,10 +27,18 @@ mybatis-plus:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
 spring:
+  application:
+    name: cinema-service
+  dubbo:
+    server: true
+    registry: zookeeper://localhost:2181
+    protocol:
+      port: 20883
+      name: dubbo
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/guns_rest?serverTimezone=GMT&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL
+      url: jdbc:mysql://127.0.0.1:3306/guns_cinema_d?serverTimezone=GMT&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL
       username: root
-      password: 12345
+      password: 123456
       filters: log4j,wall,mergeStat
 
 logging:

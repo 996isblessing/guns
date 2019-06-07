@@ -1,12 +1,14 @@
 package com.stylefeng.guns.rest.common;
 
+import java.io.Serializable;
+
 /**
  * 测试用的
  *
  * @author fengshuonan
  * @date 2017-08-25 16:47
  */
-public class SimpleObject {
+public class SimpleObject implements Serializable {
 
     private String user;
 
