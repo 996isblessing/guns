@@ -54,6 +54,7 @@ public class UserController {
         //redis删除token
         Jedis jedis = new Jedis();
         jedis.del(authToken);
+        jedis.close();
         Info info = new Info();
         return info;
     }
@@ -82,7 +83,9 @@ public class UserController {
     @ResponseBody
     @PostMapping("/updateUserInfo")
     public UserInfo updateUserInfo(MtimeUserT user){
-        userService.updateUserInfo(user);
+        if (userService.updateUserInfo(user)!=1){
+            throw new MyGunsException("更新失败");
+        };
         //通过uuid更新
         MtimeUserT user1 = userService.getUserInfo(user.getUsername());
         UserInfo userInfo = new UserInfo();

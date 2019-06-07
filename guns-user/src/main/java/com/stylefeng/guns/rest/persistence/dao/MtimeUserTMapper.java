@@ -18,4 +18,6 @@ public interface MtimeUserTMapper extends BaseMapper<MtimeUserT> {
     boolean userRegister(MtimeUserT user);
 
     MtimeUserT selectByName(String username);
+
+    int UpdateUserInfo(MtimeUserT user);
 }
