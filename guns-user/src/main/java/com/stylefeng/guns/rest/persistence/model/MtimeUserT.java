@@ -1,12 +1,13 @@
 package com.stylefeng.guns.rest.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -40,7 +41,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 用户昵称
      */
     @TableField("nick_name")
-    private String nickName;
+    private String nickname;
     /**
      * 用户性别 0-男，1-女
      */
@@ -117,12 +118,12 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.password = password;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Integer getSex() {
@@ -216,7 +217,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
                 "uuid=" + uuid +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", sex=" + sex +
                 ", birthday='" + birthday + '\'' +
                 ", email='" + email + '\'' +
