@@ -21,16 +21,31 @@
 
     </resultMap>
 
+    <resultMap id="mapSelectLess" type="com.stylefeng.guns.rest.common.persistence.model.FilmInfo">
+    <result property="filmId" column="film_id"/>
+    <result property="filmName" column="film_name"/>
+    <result property="filmLength" column="film_length"/>
+    <result property="filmType" column="film_type"/>
+    <result property="filmCats" column="film_cats"/>
+    <result property="imgAddress" column="img_address"/>
+    </resultMap>
+
+
+
     <select id="selectFilmInfo" resultMap="mapSelectFlById">
-       SELECT mhfi.film_id,mhfi.film_name,film_length,film_type,mhfi.film_cats,actors,mhfi.img_address,
-       mfd.UUID as field_id,begin_time,end_time,film_language,hall_name,price,mfd.cinema_id
-       FROM mtime_field_t mfd
-       LEFT JOIN
-       mtime_hall_film_info_t mhfi
-       on
-       mhfi.film_id=mfd.film_id
-       LEFT JOIN mtime_film_t mfl
-       ON mfl.UUID = mhfi.film_id
-       where cinema_id = #{cinema_id}
+      SELECT info.film_id,info.film_name,info.film_length,info.film_language as film_type,info.film_cats,info.actors,
+
+      info.img_address,field.UUID as field_id,field.begin_time,field.end_time,info.film_language,field.hall_name,field.price
+			 FROM mtime_hall_film_info_t info LEFT JOIN mtime_field_t field
+			 on info.film_id = field.film_id
+    </select>
+
+    <select id="selectFilmInfoLess" resultMap="mapSelectLess">
+        	SELECT info.film_id,film_name,film_language as film_type, img_address,film_cats,
+			film_length
+			FROM mtime_hall_film_info_t info
+			LEFT JOIN mtime_field_t field
+			on info.film_id = field.film_id
+			WHERE field.UUID = #{fieldId} and  cinema_id = #{cinemaId}
     </select>
 </mapper>

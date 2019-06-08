@@ -1,24 +1,26 @@
 package com.stylefeng.guns.rest.common.persistence.model.outputparam;
 
-public class MyArea {
-    int areaId;
+import java.io.Serializable;
+
+public class MyArea implements Serializable {
+    String areaId;
     String areaName;
     boolean isActive;
 
     public MyArea() {
     }
 
-    public MyArea(int areaId, String areaName, boolean isActive) {
+    public MyArea(String areaId, String areaName, boolean isActive) {
         this.areaId = areaId;
         this.areaName = areaName;
         this.isActive = isActive;
     }
 
-    public int getAreaId() {
+    public String getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(int areaId) {
+    public void setAreaId(String areaId) {
         this.areaId = areaId;
     }
 

@@ -1,18 +1,20 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
-public class FilmFields {
-    int fieldId;
+import java.io.Serializable;
+
+public class FilmFields implements Serializable {
+    String fieldId;
     String beginTime;
     String endTime;
     String language;
     String hallName;
     int price;
 
-    public int getFieldId() {
+    public String getFieldId() {
         return fieldId;
     }
 
-    public void setFieldId(int fieldId) {
+    public void setFieldId(String fieldId) {
         this.fieldId = fieldId;
     }
 

@@ -1,24 +1,26 @@
 package com.stylefeng.guns.rest.common.persistence.model.outputparam;
 
-public class MyHalltype {
-    int halltypeId;
+import java.io.Serializable;
+
+public class MyHalltype implements Serializable {
+    String halltypeId;
     String halltypeName;
     boolean isActive;
 
     public MyHalltype() {
     }
 
-    public MyHalltype(int halltypeId, String halltypeName, boolean isActive) {
+    public MyHalltype(String halltypeId, String halltypeName, boolean isActive) {
         this.halltypeId = halltypeId;
         this.halltypeName = halltypeName;
         this.isActive = isActive;
     }
 
-    public int getHalltypeId() {
+    public String getHalltypeId() {
         return halltypeId;
     }
 
-    public void setHalltypeId(int halltypeId) {
+    public void setHalltypeId(String halltypeId) {
         this.halltypeId = halltypeId;
     }
 

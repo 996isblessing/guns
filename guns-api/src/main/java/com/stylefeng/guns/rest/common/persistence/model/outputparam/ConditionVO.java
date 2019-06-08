@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model.outputparam;
 
-public class ConditionVO {
+import java.io.Serializable;
+
+public class ConditionVO implements Serializable {
     Object brandList;
     Object areaList;
     Object halltypeList;

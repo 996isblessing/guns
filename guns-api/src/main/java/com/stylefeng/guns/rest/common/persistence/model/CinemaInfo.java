@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
-public class CinemaInfo {
+import java.io.Serializable;
+
+public class CinemaInfo implements Serializable {
     int cinemaId;
     String imgUrl;
     String cinemaName;

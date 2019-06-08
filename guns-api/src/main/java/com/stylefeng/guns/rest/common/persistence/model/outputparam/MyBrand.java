@@ -1,24 +1,26 @@
 package com.stylefeng.guns.rest.common.persistence.model.outputparam;
 
-public class MyBrand {
-    int brandId;
+import java.io.Serializable;
+
+public class MyBrand implements Serializable {
+    String brandId;
     String brandName;
     boolean isActive;
 
     public MyBrand() {
     }
 
-    public MyBrand(int brandId, String brandName, boolean isActive) {
+    public MyBrand(String brandId, String brandName, boolean isActive) {
         this.brandId = brandId;
         this.brandName = brandName;
         this.isActive = isActive;
     }
 
-    public int getBrandId() {
+    public String getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(int brandId) {
+    public void setBrandId(String brandId) {
         this.brandId = brandId;
     }
 

@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
-public class ResponseVo {
+import java.io.Serializable;
+
+public class ResponseVo implements Serializable {
     int status;
     String imgPre;
     Data data;
@@ -9,7 +11,7 @@ public class ResponseVo {
         return data;
     }
 
-    public void setData(Data data) {
+        public void setData(Data data) {
         this.data = data;
     }
 

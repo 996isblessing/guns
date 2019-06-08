@@ -1,10 +1,30 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Data {
+public class Data implements Serializable {
     Object cinemaInfo;
     List<?> filmList;
+    Object filmInfo;
+    Object hallInfo;
+
+
+    public Object getFilmInfo() {
+        return filmInfo;
+    }
+
+    public void setFilmInfo(Object filmInfo) {
+        this.filmInfo = filmInfo;
+    }
+
+    public Object getHallInfo() {
+        return hallInfo;
+    }
+
+    public void setHallInfo(Object hallInfo) {
+        this.hallInfo = hallInfo;
+    }
 
     public Object getCinemaInfo() {
         return cinemaInfo;

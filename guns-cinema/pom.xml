@@ -42,11 +42,6 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>2.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.10</version>
-        </dependency>
 
         <!--druid连接池-->
        <!-- <dependency>
@@ -66,6 +61,28 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.spring.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
+        <!--api依赖-->
+        <dependency>
+            <groupId>com.stylefeng</groupId>
+            <artifactId>gunsapi</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -75,15 +92,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-
-       <!-- <resources>
-        　　　　<resource>
-        　　　　　　　　<directory>src/main/java</directory>
-        　　　　　　<includes>
-        　　　　　　　　<include>**/*.xml</include>
-                    </includes>
-                </resource>
-        </resources>-->
 
     </build>
 

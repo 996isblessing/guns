@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model.result;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     protected int status;
 
 

@@ -2,13 +2,14 @@ package com.stylefeng.guns.rest.modular.cinema.service.impl;
 
 
 
+
+
+import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.stylefeng.guns.rest.cinema.CinemaService;
 import com.stylefeng.guns.rest.common.persistence.dao.*;
-import com.stylefeng.guns.rest.common.persistence.model.CinemaInfo;
-import com.stylefeng.guns.rest.common.persistence.model.Data;
-import com.stylefeng.guns.rest.common.persistence.model.FilmInfo;
-import com.stylefeng.guns.rest.common.persistence.model.ResponseVo;
+import com.stylefeng.guns.rest.common.persistence.model.*;
 import com.stylefeng.guns.rest.common.persistence.model.generator.*;
 import com.stylefeng.guns.rest.common.persistence.model.inputparam.CinemaQueryVO;
 import com.stylefeng.guns.rest.common.persistence.model.outputparam.*;
@@ -16,17 +17,15 @@ import com.stylefeng.guns.rest.common.persistence.model.result.ExceptionResult;
 import com.stylefeng.guns.rest.common.persistence.model.result.GetCinemasResult;
 import com.stylefeng.guns.rest.common.persistence.model.result.GetConditionResult;
 import com.stylefeng.guns.rest.common.persistence.model.result.Result;
-import com.stylefeng.guns.rest.modular.cinema.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
+@Service(interfaceClass = CinemaService.class)
 @Component
 public class CinemaServiceImpl implements CinemaService {
     @Autowired(required = false)
@@ -43,6 +42,10 @@ public class CinemaServiceImpl implements CinemaService {
     CinemaInfoMapper cinemaInfoMapper;
     @Autowired(required = false)
     FilmInfoMapper filmInfoMapper;
+    @Autowired(required = false)
+    HallFilmInfoMapper hallFilmInfoMapper;
+    @Autowired
+    HallInfoMapper hallInfoMapper;
 
     @Override
     public Result getCinemas(CinemaQueryVO cinemaQueryVO) {
@@ -68,7 +71,7 @@ public class CinemaServiceImpl implements CinemaService {
                 list.add(cinemaVO);
             }
             PageInfo<CinemaVO> pageInfo = new PageInfo<>(list);
-            cinemasResult = new GetCinemasResult(200, pageInfo.getPageNum(), pageInfo.getPageSize(), list);
+            cinemasResult = new GetCinemasResult(0, pageInfo.getPageNum(), pageInfo.getPageSize(), list);
         } catch (Exception e) {
             return new ExceptionResult(1, "影院信息查询失败");
         }
@@ -99,7 +102,7 @@ public class CinemaServiceImpl implements CinemaService {
             List<BrandDict> brandDicts = brandDictMapper.selectByExample(brandDictExample);
             List<MyBrand> brands = new ArrayList<>();
             for (BrandDict brandDict : brandDicts) {
-                MyBrand myBrand = new MyBrand(brandDict.getUuid(), brandDict.getShowName(), true);
+                MyBrand myBrand = new MyBrand(brandDict.getUuid()+"", brandDict.getShowName(), true);
                 FieldExample fieldExample = new FieldExample();
                 fieldExample.createCriteria().andCinemaIdEqualTo(brandDict.getUuid()).andBeginTimeLessThan(time).andEndTimeGreaterThan(time);
                 List<Field> fields = fieldMapper.selectByExample(fieldExample);
@@ -111,7 +114,7 @@ public class CinemaServiceImpl implements CinemaService {
             List<HallDict> hallDicts = hallDictMapper.selectByExample(hallDictExample);
             ArrayList<MyHalltype> halltypes = new ArrayList<>();
             for (HallDict hallDict : hallDicts) {
-                MyHalltype myHalltype = new MyHalltype(hallDict.getUuid(), hallDict.getShowName(), true);
+                MyHalltype myHalltype = new MyHalltype(hallDict.getUuid()+"", hallDict.getShowName(), true);
                 FieldExample fieldExample = new FieldExample();
                 fieldExample.createCriteria().andHallIdEqualTo(hallDict.getUuid()).andBeginTimeLessThan(time).andEndTimeGreaterThan(time);
                 List<Field> fields = fieldMapper.selectByExample(fieldExample);
@@ -123,11 +126,11 @@ public class CinemaServiceImpl implements CinemaService {
             List<AreaDict> areaDicts = areaDictMapper.selectByExample(areaDictExample);
             ArrayList<MyArea> myAreas = new ArrayList<>();
             for (AreaDict areaDict : areaDicts) {
-                MyArea myArea = new MyArea(areaDict.getUuid(), areaDict.getShowName(), true);
+                MyArea myArea = new MyArea(areaDict.getUuid()+"", areaDict.getShowName(), true);
                 myAreas.add(myArea);
             }
             conditionVO = new ConditionVO(brands, myAreas, halltypes);
-            getConditionResult = new GetConditionResult(200, conditionVO);
+            getConditionResult = new GetConditionResult(0, conditionVO);
         } catch (Exception e) {
             return new ExceptionResult(1, "影院信息查询失败");
         }
@@ -139,9 +142,7 @@ public class CinemaServiceImpl implements CinemaService {
 
             Data data = new Data();
             FilmInfo filmInfo = new FilmInfo();
-            //CinemaInfo cinemaInfo = new CinemaInfo();
-        CinemaInfo cinemaInfo = new CinemaInfo();
-        HashMap<Object, Object> hashMap = new HashMap<>();
+            CinemaInfo cinemaInfo = new CinemaInfo();
             ArrayList<Object> list = new ArrayList<>();
             cinemaInfo = cinemaInfoMapper.selectById(cinemaId);
             List<FilmInfo> filmInfos = filmInfoMapper.selectFilmInfo(cinemaId);
@@ -153,7 +154,41 @@ public class CinemaServiceImpl implements CinemaService {
             responseVo.setData(data);
             responseVo.setImgPre("http://img.meetingshop.cn/");
             }
-            else new ExceptionResult(1, "影院信息查询失败");
+            else {
+                new ExceptionResult(1, "影院信息查询失败");
+            }
             return responseVo;
+    }
+
+    @Override
+    public ResponseVo getFieldInfo(Integer cinemaId, Integer fieldId) {
+
+        Data data = new Data();
+        FilmInfo filmInfo = new FilmInfo();
+
+        CinemaInfo cinemaInfo = new CinemaInfo();
+        ArrayList<Object> list = new ArrayList<>();
+        cinemaInfo = cinemaInfoMapper.selectById(cinemaId);
+        filmInfo = filmInfoMapper.selectFilmInfoLess(fieldId,cinemaId);
+        //HallFilmInfo FilmInfo = hallFilmInfoMapper.selectByPrimaryKey(fieldId);
+
+        HallInfo hallInfo = hallInfoMapper.selectByFieldid(fieldId);
+        HallDict hallDict = hallDictMapper.selectByPrimaryKey(fieldId);
+        System.out.println(hallDict);
+        hallInfo.setSeatFile(hallDict.getSeatAddress());
+        data.setCinemaInfo(cinemaInfo);
+        data.setFilmInfo(filmInfo);
+        data.setHallInfo(hallInfo);
+        ResponseVo responseVo = new ResponseVo();
+        if (data != null){
+            responseVo.setStatus(0);
+            responseVo.setData(data);
+            responseVo.setImgPre("http://img.meetingshop.cn/");
+        }
+        else {
+            new ExceptionResult(1, "影院信息查询失败");
+        }
+        return responseVo;
+
     }
 }

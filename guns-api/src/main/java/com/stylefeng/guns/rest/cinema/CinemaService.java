@@ -1,4 +1,5 @@
-package com.stylefeng.guns.rest.modular.cinema.service;
+package com.stylefeng.guns.rest.cinema;
+
 
 
 import com.stylefeng.guns.rest.common.persistence.model.ResponseVo;
@@ -12,5 +13,7 @@ public interface CinemaService  {
 
     ResponseVo getFields(int cinemaId);
 
+
+    ResponseVo getFieldInfo(Integer cinemaId, Integer fieldId);
 
 }

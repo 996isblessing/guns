@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model.inputparam;
 
-public class CinemaQueryVO {
+import java.io.Serializable;
+
+public class CinemaQueryVO implements Serializable {
 /*    brandId	影院编号	否,默认为99，全部
     hallType	影厅类型	否,默认为99，全部
     districtId	行政区编号	否,默认为99，全部
