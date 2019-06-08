@@ -2,7 +2,6 @@ package com.stylefeng.guns.rest.cinema;
 
 
 
-import com.stylefeng.guns.rest.common.persistence.model.ResponseVo;
 import com.stylefeng.guns.rest.common.persistence.model.inputparam.CinemaQueryVO;
 import com.stylefeng.guns.rest.common.persistence.model.result.Result;
 
@@ -11,9 +10,9 @@ public interface CinemaService  {
 
     Result getCondition(Integer brandId, Integer hallType, Integer areaId);
 
-    ResponseVo getFields(int cinemaId);
+    Result getFields(int cinemaId);
 
 
-    ResponseVo getFieldInfo(Integer cinemaId, Integer fieldId);
+    Result getFieldInfo(Integer cinemaId, Integer fieldId);
 
 }

@@ -9,6 +9,15 @@ public class Data implements Serializable {
     Object filmInfo;
     Object hallInfo;
 
+    public Data() {
+    }
+
+    public Data(Object cinemaInfo, List<?> filmList, Object filmInfo, Object hallInfo) {
+        this.cinemaInfo = cinemaInfo;
+        this.filmList = filmList;
+        this.filmInfo = filmInfo;
+        this.hallInfo = hallInfo;
+    }
 
     public Object getFilmInfo() {
         return filmInfo;
