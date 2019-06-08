@@ -54,7 +54,7 @@ public class CinemaServiceImpl implements CinemaService {
             criteria.andAreaIdEqualTo(cinemaQueryVO.getDistrictId());
         }
         if (cinemaQueryVO.getHallType() != 99) {
-            criteria.andHallIdsLike("%" + cinemaQueryVO.getHallType() + "#%");
+            criteria.andHallIdsLike("%#" + cinemaQueryVO.getHallType() + "#%");
         }
         List<Cinema> cinemas;
         List<CinemaVO> list = new ArrayList<>();
