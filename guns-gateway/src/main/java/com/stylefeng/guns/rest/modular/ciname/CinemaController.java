@@ -34,17 +34,15 @@ public class CinemaController {
 
     @GetMapping("/cinema/getFields")
     @ResponseBody
-    public ResponseVo getFields(int cinemaId){
-       ResponseVo responseVo = cinemaService.getFields(cinemaId);
-
+    public Result getFields(int cinemaId){
+       Result responseVo = cinemaService.getFields(cinemaId);
        return responseVo;
     }
 
     @RequestMapping(value = "/cinema/getFieldInfo" ,method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVo getFieldInfo(Integer cinemaId,Integer fieldId){
-        ResponseVo responseVo = cinemaService.getFieldInfo(cinemaId,fieldId);
-
+    public Result getFieldInfo(Integer cinemaId,Integer fieldId){
+        Result responseVo = cinemaService.getFieldInfo(cinemaId,fieldId);
         return responseVo;
     }
 
