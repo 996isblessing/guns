@@ -1,22 +1,23 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 年代信息表
+ * 区域信息表
  * </p>
  *
  * @author stylefeng
  * @since 2019-06-04
  */
-@TableName("mtime_year_dict_t")
-public class MtimeYearDictT extends Model<MtimeYearDictT> {
+@TableName("mtime_source_dict_t")
+public class MtimeSourceDictT extends Model<MtimeSourceDictT> {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,7 +56,7 @@ public class MtimeYearDictT extends Model<MtimeYearDictT> {
 
     @Override
     public String toString() {
-        return "MtimeYearDictT{" +
+        return "MtimeSourceDictT{" +
         "uuid=" + uuid +
         ", showName=" + showName +
         "}";

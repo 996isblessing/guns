@@ -1,6 +1,8 @@
-package com.stylefeng.guns.rest.persistence.filmmodel.index;
+package com.stylefeng.guns.rest.common.persistence.model.index;
 
-public class Banner {
+import java.io.Serializable;
+
+public class Banner  implements Serializable {
     String bannerId;
     String bannerAddress;
     String bannerUrl;

@@ -1,11 +1,12 @@
 package com.stylefeng.guns.rest.common.persistence.model.index;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 对应各类电影信息
  */
-public class FilmTemplate {
+public class FilmTemplate implements Serializable {
     Integer filmNum;
     List<FilmInfo> filmInfo;
 

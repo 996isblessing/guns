@@ -1,12 +1,13 @@
 package com.stylefeng.guns.rest.common.persistence.model.index;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 对应filmInfo
  */
-public class FilmInfo {
-    Integer filmId;
+public class FilmInfo  implements Serializable {
+    String filmId;
     Integer filmType;
     String imgAddress;
     String filmName;
@@ -16,11 +17,11 @@ public class FilmInfo {
     Integer boxNum;
     String score;
 
-    public Integer getFilmId() {
+    public String getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(Integer filmId) {
+    public void setFilmId(String filmId) {
         this.filmId = filmId;
     }
 

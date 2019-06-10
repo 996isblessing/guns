@@ -2,19 +2,20 @@ package com.stylefeng.guns.rest.common.persistence.model.index;
 
 
 
+import java.io.Serializable;
 import java.util.List;
 
 
 /**
  * 对应data
  */
-public class IndexResult {
+public class IndexResult implements Serializable {
     List<Banner> banners;
-    List<FilmTemplate> hotFilms;
-    List<FilmTemplate> soonFilms;
-    List<FilmTemplate> boxRanking;
-    List<FilmTemplate> expectRanking;
-    List<FilmTemplate> top100;
+    FilmTemplate hotFilms;
+    FilmTemplate soonFilms;
+    List<FilmInfo> boxRanking;
+    List<FilmInfo> expectRanking;
+    List<FilmInfo> top100;
 
     public List<Banner> getBanners() {
         return banners;
@@ -24,43 +25,43 @@ public class IndexResult {
         this.banners = banners;
     }
 
-    public List<FilmTemplate> getHotFilms() {
+    public FilmTemplate getHotFilms() {
         return hotFilms;
     }
 
-    public void setHotFilms(List<FilmTemplate> hotFilms) {
+    public void setHotFilms(FilmTemplate hotFilms) {
         this.hotFilms = hotFilms;
     }
 
-    public List<FilmTemplate> getSoonFilms() {
+    public FilmTemplate getSoonFilms() {
         return soonFilms;
     }
 
-    public void setSoonFilms(List<FilmTemplate> soonFilms) {
+    public void setSoonFilms(FilmTemplate soonFilms) {
         this.soonFilms = soonFilms;
     }
 
-    public List<FilmTemplate> getBoxRanking() {
+    public List<FilmInfo> getBoxRanking() {
         return boxRanking;
     }
 
-    public void setBoxRanking(List<FilmTemplate> boxRanking) {
+    public void setBoxRanking(List<FilmInfo> boxRanking) {
         this.boxRanking = boxRanking;
     }
 
-    public List<FilmTemplate> getExpectRanking() {
+    public List<FilmInfo> getExpectRanking() {
         return expectRanking;
     }
 
-    public void setExpectRanking(List<FilmTemplate> expectRanking) {
+    public void setExpectRanking(List<FilmInfo> expectRanking) {
         this.expectRanking = expectRanking;
     }
 
-    public List<FilmTemplate> getTop100() {
+    public List<FilmInfo> getTop100() {
         return top100;
     }
 
-    public void setTop100(List<FilmTemplate> top100) {
+    public void setTop100(List<FilmInfo> top100) {
         this.top100 = top100;
     }
 
