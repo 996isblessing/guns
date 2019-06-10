@@ -18,19 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-@RequestMapping("/user")
+//@Controller
+//@RequestMapping("/user")
 public class UserController {
 
-    @Reference(check = false)
+//    @Reference(check = false)
     UserService userService;
 
     //Token操作的工具
-    @Autowired
+//    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     //用于获得请求头
-    @Autowired
+//    @Autowired
     private JwtProperties jwtProperties;
 
     @RequestMapping("/test")
@@ -89,7 +89,6 @@ public class UserController {
         userInfo.setData(user1);
         return userInfo;
     }
-
     //用户名验证
     @RequestMapping("/check")
     @ResponseBody

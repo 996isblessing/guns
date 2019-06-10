@@ -30,4 +30,13 @@ public class HallDict {
     public void setSeatAddress(String seatAddress) {
         this.seatAddress = seatAddress == null ? null : seatAddress.trim();
     }
+
+    @Override
+    public String toString() {
+        return "HallDict{" +
+                "uuid=" + uuid +
+                ", showName='" + showName + '\'' +
+                ", seatAddress='" + seatAddress + '\'' +
+                '}';
+    }
 }

@@ -2,13 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stylefeng.guns.rest.common.persistence.dao.HallFilmInfoMapper">
   <resultMap id="BaseResultMap" type="com.stylefeng.guns.rest.common.persistence.model.generator.HallFilmInfo">
-    <id column="UUID" jdbcType="INTEGER" property="uuid" />
     <result column="film_id" jdbcType="INTEGER" property="filmId" />
     <result column="film_name" jdbcType="VARCHAR" property="filmName" />
     <result column="film_length" jdbcType="VARCHAR" property="filmLength" />
     <result column="film_cats" jdbcType="VARCHAR" property="filmCats" />
     <result column="film_language" jdbcType="VARCHAR" property="filmLanguage" />
-    <result column="actors" jdbcType="VARCHAR" property="actors" />
     <result column="img_address" jdbcType="VARCHAR" property="imgAddress" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    UUID, film_id, film_name, film_length, film_cats, film_language, actors, img_address
+    UUID, film_id, film_name, film_length, film_cats, film_language, img_address
   </sql>
   <select id="selectByExample" parameterType="com.stylefeng.guns.rest.common.persistence.model.generator.HallFilmInfoExample" resultMap="BaseResultMap">
     select

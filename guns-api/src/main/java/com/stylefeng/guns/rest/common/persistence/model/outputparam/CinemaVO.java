@@ -1,6 +1,8 @@
 package com.stylefeng.guns.rest.common.persistence.model.outputparam;
 
-public class CinemaVO {
+import java.io.Serializable;
+
+public class CinemaVO implements Serializable {
 
     Integer uuid;
     String cinemaName;

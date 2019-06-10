@@ -1,9 +1,10 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FilmInfo {
-    int filmId;
+public class FilmInfo implements Serializable {
+    String filmId;
     String filmName;
     String filmLength;
     String filmType;
@@ -26,11 +27,11 @@ public class FilmInfo {
                 '}';
     }
 
-    public int getFilmId() {
+    public String getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(int filmId) {
+    public void setFilmId(String filmId) {
         this.filmId = filmId;
     }
 

@@ -1,8 +1,9 @@
 package com.stylefeng.guns.rest.common.persistence.model.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FilmList {
+public class FilmList implements Serializable {
     int filmId;
     String filmName;
     String filmLength;

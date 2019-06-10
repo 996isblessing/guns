@@ -1,7 +1,6 @@
 package com.stylefeng.guns.rest.common.persistence.model.generator;
 
 public class HallFilmInfo {
-    private Integer uuid;
 
     private Integer filmId;
 
@@ -13,17 +12,8 @@ public class HallFilmInfo {
 
     private String filmLanguage;
 
-    private String actors;
-
     private String imgAddress;
 
-    public Integer getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
-    }
 
     public Integer getFilmId() {
         return filmId;
@@ -63,14 +53,6 @@ public class HallFilmInfo {
 
     public void setFilmLanguage(String filmLanguage) {
         this.filmLanguage = filmLanguage == null ? null : filmLanguage.trim();
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors == null ? null : actors.trim();
     }
 
     public String getImgAddress() {

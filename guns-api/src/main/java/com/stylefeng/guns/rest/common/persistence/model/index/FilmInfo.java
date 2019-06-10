@@ -91,7 +91,7 @@ public class FilmInfo  implements Serializable {
 
     @Override
     public String toString() {
-        return "FilmInfo{" +
+        return "MyFilmInfo{" +
                 "filmId=" + filmId +
                 ", filmType=" + filmType +
                 ", imgAddress='" + imgAddress + '\'' +
