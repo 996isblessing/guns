@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/film")
 public class FilmControllerW {
 
-    @Reference
+    @Reference(check = false)
     FilmService filmService;
 
-    @RequestMapping("/getindex")
+    @RequestMapping("/getIndex")
     @ResponseBody
     public IndexPageInfoW getIndex() {
         System.out.println("1");

@@ -27,19 +27,19 @@ import java.util.Map;
  * @author fengshuonan
  * @Date 2017/8/24 14:22
  */
-//@RestController
+@RestController
 public class AuthController {
 
-//    @Autowired
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-//    @Reference
+    @Reference
     UserService userService;
 
-//    @Resource(name = "simpleValidator")
+    @Resource(name = "simpleValidator")
     private IReqValidator reqValidator;
 
-//    @RequestMapping(value = "${jwt.auth-path}")
+    @RequestMapping(value = "${jwt.auth-path}")
     public AuthResultVo createAuthenticationToken(AuthRequest authRequest) {
         boolean validate = userService.auth(authRequest.getUserName(), authRequest.getPassword());
         AuthResultVo authResultVo = new AuthResultVo();

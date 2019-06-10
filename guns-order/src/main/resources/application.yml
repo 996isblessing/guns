@@ -1,6 +1,6 @@
 rest:
-  auth-open: false #jwt鉴权机制是否开启(true或者false)
-  sign-open: false #签名机制是否开启(true或false)
+  auth-open: true #jwt鉴权机制是否开启(true或者false)
+  sign-open: true #签名机制是否开启(true或false)
 
 jwt:
   header: Authorization   #http请求头所需要的字段
@@ -9,9 +9,8 @@ jwt:
   auth-path: auth         #认证请求的路径
   md5-key: randomKey      #md5加密混淆key
 
-#端口号从8080开始排，dubbo的微服务端口从20880开始
 server:
-  port: 8077 #项目端口
+  port: 8098 #项目端口
 
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/rest/**/mapping/*.xml
@@ -20,6 +19,8 @@ mybatis-plus:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
     refresh-mapper: true
+    db-config:  #当bean属性为空时不更新字段
+      field-strategy: not_null
   configuration:
     map-underscore-to-camel-case: false
     cache-enabled: true #配置的缓存的全局开关
@@ -29,13 +30,13 @@ mybatis-plus:
 
 spring:
   application:
-    name: film
+    name: order
   dubbo:
     server: true
     registry: zookeeper://localhost:2181
     protocol:
       name: dubbo
-      port: 20885
+      port: 20881
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
       username: root
