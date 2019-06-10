@@ -1,9 +1,9 @@
 package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVo;
-import com.stylefeng.guns.rest.common.persistence.model.index.IndexPageInfo;
-import com.stylefeng.guns.rest.common.persistence.model.index.IndexResult;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVoW;
+import com.stylefeng.guns.rest.common.persistence.model.index.IndexPageInfoW;
+import com.stylefeng.guns.rest.common.persistence.model.index.IndexResultW;
 import com.stylefeng.guns.rest.film.FilmService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,22 +18,22 @@ public class FilmControllerW {
 
     @RequestMapping("/getindex")
     @ResponseBody
-    public IndexPageInfo getIndex() {
+    public IndexPageInfoW getIndex() {
         System.out.println("1");
         System.out.println("2");
-        IndexResult indexResult = filmService.queryIndexMsg();
-        System.out.println(indexResult);
-        IndexPageInfo indexPageInfo = new IndexPageInfo();
-        indexPageInfo.setData(indexResult);
-        indexPageInfo.setStatus(0);
-        indexPageInfo.setImgPre("http://img.meetingshop.cn/");
-        return indexPageInfo;
+        IndexResultW indexResultW = filmService.queryIndexMsg();
+        System.out.println(indexResultW);
+        IndexPageInfoW indexPageInfoW = new IndexPageInfoW();
+        indexPageInfoW.setData(indexResultW);
+        indexPageInfoW.setStatus(0);
+        indexPageInfoW.setImgPre("http://img.meetingshop.cn/");
+        return indexPageInfoW;
     }
 
     @RequestMapping("/getConditionList")
     @ResponseBody
-    public FilmConditionVo getConditionList() {
-        FilmConditionVo filmCondition = filmService.getFilmCondition();
+    public FilmConditionVoW getConditionList() {
+        FilmConditionVoW filmCondition = filmService.getFilmCondition();
         return filmCondition;
     }
 

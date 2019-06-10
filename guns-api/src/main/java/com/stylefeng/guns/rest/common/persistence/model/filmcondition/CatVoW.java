@@ -2,7 +2,7 @@ package com.stylefeng.guns.rest.common.persistence.model.filmcondition;
 
 import java.io.Serializable;
 
-public class CatVo implements Serializable {
+public class CatVoW implements Serializable {
 
     String catId;
     String catName;
@@ -10,7 +10,7 @@ public class CatVo implements Serializable {
 
     @Override
     public String toString() {
-        return "CatVo{" +
+        return "CatVoW{" +
                 "catId='" + catId + '\'' +
                 ", catName='" + catName + '\'' +
                 ", isActive=" + isActive +

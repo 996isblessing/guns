@@ -2,14 +2,14 @@ package com.stylefeng.guns.rest.common.persistence.model.filmcondition;
 
 import java.io.Serializable;
 
-public class SourceVo implements Serializable {
+public class SourceVoW implements Serializable {
     String sourceId;
     String sourceName;
     boolean isActive = true;
 
     @Override
     public String toString() {
-        return "SourceVo{" +
+        return "SourceVoW{" +
                 "sourceId='" + sourceId + '\'' +
                 ", sourceName='" + sourceName + '\'' +
                 ", isActive=" + isActive +

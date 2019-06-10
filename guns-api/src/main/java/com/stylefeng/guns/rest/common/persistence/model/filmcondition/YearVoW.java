@@ -2,14 +2,14 @@ package com.stylefeng.guns.rest.common.persistence.model.filmcondition;
 
 import java.io.Serializable;
 
-public class YearVo implements Serializable {
+public class YearVoW implements Serializable {
     String yearId;
     String yearName;
     boolean isActive = true;
 
     @Override
     public String toString() {
-        return "YearVo{" +
+        return "YearVoW{" +
                 "yearId='" + yearId + '\'' +
                 ", yearName='" + yearName + '\'' +
                 ", isActive=" + isActive +

@@ -3,11 +3,12 @@ package com.stylefeng.guns.rest.modular.film.service.impl.apiserviceimpl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.rest.common.persistence.model.*;
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.CatVo;
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVo;
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.SourceVo;
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.YearVo;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.CatVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.SourceVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.YearVoW;
 import com.stylefeng.guns.rest.common.persistence.model.index.*;
+import com.stylefeng.guns.rest.common.persistence.model.index.FilmInfoW;
 import com.stylefeng.guns.rest.film.FilmService;
 import com.stylefeng.guns.rest.modular.film.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,23 +39,23 @@ public class FilmServiceImpl implements FilmService {
     IMtimeYearDictTService yearService;
 
     @Override
-    public IndexResult queryIndexMsg() {
-        IndexResult indexResult = new IndexResult();
-        FilmTemplate hotFilmTemplate = new FilmTemplate();
-        FilmTemplate soonFilmTemplate = new FilmTemplate();
+    public IndexResultW queryIndexMsg() {
+        IndexResultW indexResultW = new IndexResultW();
+        FilmTemplateW hotFilmTemplateW = new FilmTemplateW();
+        FilmTemplateW soonFilmTemplateW = new FilmTemplateW();
         //banner
-        List<Banner> banners = new ArrayList<>();
+        List<BannerW> bannerWS = new ArrayList<>();
         List<MtimeBannerT> bannerList = bannerService.selectList(null);
         for (MtimeBannerT t : bannerList) {
-            Banner banner = new Banner();
-            banner.setBannerId(t.getUuid().toString());
-            banner.setBannerAddress(t.getBannerAddress());
-            banner.setBannerUrl(t.getBannerUrl());
-            banners.add(banner);
+            BannerW bannerW = new BannerW();
+            bannerW.setBannerId(t.getUuid().toString());
+            bannerW.setBannerAddress(t.getBannerAddress());
+            bannerW.setBannerUrl(t.getBannerUrl());
+            bannerWS.add(bannerW);
         }
 
         //hotFilm已验证
-        ArrayList<FilmInfo> filmInfoList = new ArrayList<>();
+        ArrayList<FilmInfoW> filmInfoWList = new ArrayList<>();
         EntityWrapper<MtimeFilmT> hotFilmcountWrapper = new EntityWrapper<>();
         hotFilmcountWrapper.eq("film_status", 1);
         int hotFilmNum = filmTService.selectCount(hotFilmcountWrapper);
@@ -63,24 +64,24 @@ public class FilmServiceImpl implements FilmService {
         List<MtimeFilmT> hotFilm = filmTService.selectList(entityWrapper);
         for (MtimeFilmT t : hotFilm) {
             EntityWrapper<MtimeFilmInfoT> infoTEntityWrapper = new EntityWrapper<>();
-            FilmInfo hotFilmInfo = new FilmInfo();
+            FilmInfoW hotFilmInfoW = new FilmInfoW();
             Integer uuid = t.getUuid();
             infoTEntityWrapper.eq("UUID", uuid);
             MtimeFilmInfoT filmInfoT = filmInfoTService.selectOne(infoTEntityWrapper);
-            hotFilmInfo.setFilmId(filmInfoT.getFilmId());
-            hotFilmInfo.setFilmType(t.getFilmType());
-            hotFilmInfo.setImgAddress(t.getImgAddress());
-            hotFilmInfo.setFilmName(t.getFilmName());
-            hotFilmInfo.setFilmScore(t.getFilmScore());
-            filmInfoList.add(hotFilmInfo);
+            hotFilmInfoW.setFilmId(filmInfoT.getFilmId());
+            hotFilmInfoW.setFilmType(t.getFilmType());
+            hotFilmInfoW.setImgAddress(t.getImgAddress());
+            hotFilmInfoW.setFilmName(t.getFilmName());
+            hotFilmInfoW.setFilmScore(t.getFilmScore());
+            filmInfoWList.add(hotFilmInfoW);
         }
         //赋值
-        hotFilmTemplate.setFilmNum(hotFilmNum);
-        hotFilmTemplate.setFilmInfo(filmInfoList);
+        hotFilmTemplateW.setFilmNum(hotFilmNum);
+        hotFilmTemplateW.setFilmInfoW(filmInfoWList);
 
 
         //soonFilms已验证
-        List<FilmInfo> soonFilmList = new ArrayList<FilmInfo>();
+        List<FilmInfoW> soonFilmList = new ArrayList<FilmInfoW>();
         EntityWrapper<MtimeFilmT> soonFilmcountWrapper = new EntityWrapper<>();
         soonFilmcountWrapper.eq("film_status", 2);
         int soonFilmNum = filmTService.selectCount(soonFilmcountWrapper);
@@ -89,7 +90,7 @@ public class FilmServiceImpl implements FilmService {
         List<MtimeFilmT> soonFilm = filmTService.selectList(soonFilmWrapper);
         for (MtimeFilmT t : soonFilm) {
             EntityWrapper<MtimeFilmInfoT> infoTEntityWrapper1 = new EntityWrapper<>();
-            FilmInfo singlesoonFilm = new FilmInfo();
+            FilmInfoW singlesoonFilm = new FilmInfoW();
             Integer uuid = t.getUuid();
             infoTEntityWrapper1.eq("film_id", uuid);
             MtimeFilmInfoT filmInfoT = filmInfoTService.selectOne(infoTEntityWrapper1);
@@ -102,19 +103,19 @@ public class FilmServiceImpl implements FilmService {
             soonFilmList.add(singlesoonFilm);
         }
         //soon赋值
-        soonFilmTemplate.setFilmNum(soonFilmNum);
-        soonFilmTemplate.setFilmInfo(soonFilmList);
+        soonFilmTemplateW.setFilmNum(soonFilmNum);
+        soonFilmTemplateW.setFilmInfoW(soonFilmList);
 
 
         //票房排行榜 film_box_office boxRanking 已验证
-        ArrayList<FilmInfo> filmInfoList3 = new ArrayList<>();
+        ArrayList<FilmInfoW> filmInfoWList3 = new ArrayList<>();
         EntityWrapper<MtimeFilmT> entityWrapper3 = new EntityWrapper<>();
         entityWrapper3.orderBy("film_box_office", false);
         List<MtimeFilmT> mtimeFilmTS = filmTService.selectList(entityWrapper3);
 
         for (MtimeFilmT t : mtimeFilmTS) {
             EntityWrapper<MtimeFilmInfoT> infoTEntityWrapper3 = new EntityWrapper<>();
-            FilmInfo expectRankingInfo = new FilmInfo();
+            FilmInfoW expectRankingInfo = new FilmInfoW();
             Integer uuid = t.getUuid();
             infoTEntityWrapper3.eq("film_id", uuid);
             MtimeFilmInfoT filmInfoT = filmInfoTService.selectOne(infoTEntityWrapper3);
@@ -122,7 +123,7 @@ public class FilmServiceImpl implements FilmService {
             expectRankingInfo.setImgAddress(t.getImgAddress());
             expectRankingInfo.setFilmName(t.getFilmName());
             expectRankingInfo.setBoxNum(t.getFilmBoxOffice());
-            filmInfoList3.add(expectRankingInfo);
+            filmInfoWList3.add(expectRankingInfo);
         }
 
         //最受欢迎 expectRanking 按评分来查
@@ -133,7 +134,7 @@ public class FilmServiceImpl implements FilmService {
         EntityWrapper<MtimeFilmInfoT> filminfoWrapper4 = new EntityWrapper<>();
 
         for (MtimeFilmT t : list4) {
-            FilmInfo singleExpectRanking = new FilmInfo();
+            FilmInfoW singleExpectRanking = new FilmInfoW();
             Integer uuid = t.getUuid();
             filminfoWrapper4.eq("film_id", uuid);
             MtimeFilmInfoT filmInfo = filmInfoTService.selectOne(filminfoWrapper4);
@@ -145,13 +146,13 @@ public class FilmServiceImpl implements FilmService {
        */
 
         //top100 top100电影列表
-        ArrayList<FilmInfo> top100 = new ArrayList<>();
+        ArrayList<FilmInfoW> top100 = new ArrayList<>();
         EntityWrapper<MtimeFilmT> entityWrapper5 = new EntityWrapper<>();
         entityWrapper5.orderBy("film_score", false);
         List<MtimeFilmT> top100List = filmTService.selectList(entityWrapper5);
         for (MtimeFilmT t : top100List) {
             EntityWrapper<MtimeFilmInfoT> filmInfoWrapper5 = new EntityWrapper<>();
-            FilmInfo singletop100 = new FilmInfo();
+            FilmInfoW singletop100 = new FilmInfoW();
             Integer uuid = t.getUuid();
             filmInfoWrapper5.eq("film_id", uuid);
             MtimeFilmInfoT filmInfo = filmInfoTService.selectOne(filmInfoWrapper5);
@@ -163,54 +164,54 @@ public class FilmServiceImpl implements FilmService {
             top100.add(singletop100);
         }
 
-        indexResult.setBanners(banners);
-        indexResult.setHotFilms(hotFilmTemplate);
-        indexResult.setSoonFilms(soonFilmTemplate);
-        indexResult.setBoxRanking(filmInfoList3);
-        indexResult.setTop100(top100);
+        indexResultW.setBannerWS(bannerWS);
+        indexResultW.setHotFilms(hotFilmTemplateW);
+        indexResultW.setSoonFilms(soonFilmTemplateW);
+        indexResultW.setBoxRanking(filmInfoWList3);
+        indexResultW.setTop100(top100);
 
 
-        return indexResult;
+        return indexResultW;
 
     }
 
     @Override
-    public FilmConditionVo getFilmCondition() {
-        FilmConditionVo filmConditionVo = new FilmConditionVo();
+    public FilmConditionVoW getFilmCondition() {
+        FilmConditionVoW filmConditionVoW = new FilmConditionVoW();
 
         List<MtimeCatDictT> catListT = catService.selectList(null);
-        ArrayList<CatVo> catVos = new ArrayList<>();
+        ArrayList<CatVoW> catVoWS = new ArrayList<>();
         for (MtimeCatDictT t : catListT) {
-            CatVo catVo = new CatVo();
-            catVo.setCatId(t.getUuid().toString());
-            catVo.setCatName(t.getShowName());
-            catVos.add(catVo);
+            CatVoW catVoW = new CatVoW();
+            catVoW.setCatId(t.getUuid().toString());
+            catVoW.setCatName(t.getShowName());
+            catVoWS.add(catVoW);
         }
 
         //
         List<MtimeSourceDictT> sourceList = sourceService.selectList(null);
-        ArrayList<SourceVo> sourceVos = new ArrayList<>();
+        ArrayList<SourceVoW> sourceVoWS = new ArrayList<>();
         for (MtimeSourceDictT t : sourceList) {
-            SourceVo sourceVo = new SourceVo();
-            sourceVo.setSourceId(t.getUuid().toString());
-            sourceVo.setSourceName(t.getShowName());
-            sourceVos.add(sourceVo);
+            SourceVoW sourceVoW = new SourceVoW();
+            sourceVoW.setSourceId(t.getUuid().toString());
+            sourceVoW.setSourceName(t.getShowName());
+            sourceVoWS.add(sourceVoW);
         }
 
         //
         List<MtimeYearDictT> yearList = yearService.selectList(null);
-        ArrayList<YearVo> yearVos = new ArrayList<>();
+        ArrayList<YearVoW> yearVoWS = new ArrayList<>();
         for (MtimeYearDictT t : yearList) {
-            YearVo yearVo = new YearVo();
-            yearVo.setYearId(t.getUuid().toString());
-            yearVo.setYearName(t.getShowName());
-            yearVos.add(yearVo);
+            YearVoW yearVoW = new YearVoW();
+            yearVoW.setYearId(t.getUuid().toString());
+            yearVoW.setYearName(t.getShowName());
+            yearVoWS.add(yearVoW);
         }
-        filmConditionVo.setCatInfo(catVos);
-        filmConditionVo.setSourceInfo(sourceVos);
-        filmConditionVo.setYearInfo(yearVos);
+        filmConditionVoW.setCatInfo(catVoWS);
+        filmConditionVoW.setSourceInfo(sourceVoWS);
+        filmConditionVoW.setYearInfo(yearVoWS);
 
-        return filmConditionVo;
+        return filmConditionVoW;
     }
 
     @Override

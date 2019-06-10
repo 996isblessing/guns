@@ -2,10 +2,10 @@ package com.stylefeng.guns.rest.common.persistence.model.index;
 
 import java.io.Serializable;
 
-public class IndexPageInfo  implements Serializable {
+public class IndexPageInfoW implements Serializable {
     int status;
     String imgPre;
-    IndexResult data;
+    IndexResultW data;
 
     public int getStatus() {
         return status;
@@ -23,17 +23,17 @@ public class IndexPageInfo  implements Serializable {
         this.imgPre = imgPre;
     }
 
-    public IndexResult getData() {
+    public IndexResultW getData() {
         return data;
     }
 
-    public void setData(IndexResult data) {
+    public void setData(IndexResultW data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "IndexPageInfo{" +
+        return "IndexPageInfoW{" +
                 "status=" + status +
                 ", imgPre='" + imgPre + '\'' +
                 ", data=" + data +

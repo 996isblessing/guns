@@ -3,41 +3,41 @@ package com.stylefeng.guns.rest.common.persistence.model.filmcondition;
 import java.io.Serializable;
 import java.util.List;
 
-public class FilmConditionVo implements Serializable {
-    List<CatVo> catInfo;
-    List<SourceVo> sourceInfo;
-    List<YearVo> yearInfo;
+public class FilmConditionVoW implements Serializable {
+    List<CatVoW> catInfo;
+    List<SourceVoW> sourceInfo;
+    List<YearVoW> yearInfo;
 
     @Override
     public String toString() {
-        return "FilmConditionVo{" +
+        return "FilmConditionVoW{" +
                 "catInfo=" + catInfo +
                 ", sourceInfo=" + sourceInfo +
                 ", yearInfo=" + yearInfo +
                 '}';
     }
 
-    public List<CatVo> getCatInfo() {
+    public List<CatVoW> getCatInfo() {
         return catInfo;
     }
 
-    public void setCatInfo(List<CatVo> catInfo) {
+    public void setCatInfo(List<CatVoW> catInfo) {
         this.catInfo = catInfo;
     }
 
-    public List<SourceVo> getSourceInfo() {
+    public List<SourceVoW> getSourceInfo() {
         return sourceInfo;
     }
 
-    public void setSourceInfo(List<SourceVo> sourceInfo) {
+    public void setSourceInfo(List<SourceVoW> sourceInfo) {
         this.sourceInfo = sourceInfo;
     }
 
-    public List<YearVo> getYearInfo() {
+    public List<YearVoW> getYearInfo() {
         return yearInfo;
     }
 
-    public void setYearInfo(List<YearVo> yearInfo) {
+    public void setYearInfo(List<YearVoW> yearInfo) {
         this.yearInfo = yearInfo;
     }
 }

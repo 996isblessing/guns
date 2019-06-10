@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 对应filmInfo
  */
-public class FilmInfo  implements Serializable {
+public class FilmInfoW implements Serializable {
     String filmId;
     Integer filmType;
     String imgAddress;

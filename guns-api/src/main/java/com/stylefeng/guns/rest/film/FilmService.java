@@ -1,11 +1,11 @@
 package com.stylefeng.guns.rest.film;
 
 
-import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVo;
-import com.stylefeng.guns.rest.common.persistence.model.index.IndexResult;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVoW;
+import com.stylefeng.guns.rest.common.persistence.model.index.IndexResultW;
 
 public interface FilmService {
-   public IndexResult queryIndexMsg();
-   public FilmConditionVo getFilmCondition();
+   public IndexResultW queryIndexMsg();
+   public FilmConditionVoW getFilmCondition();
    public String myTest();
 }

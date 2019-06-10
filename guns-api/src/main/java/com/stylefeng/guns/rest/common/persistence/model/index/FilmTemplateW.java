@@ -6,9 +6,9 @@ import java.util.List;
 /**
  * 对应各类电影信息
  */
-public class FilmTemplate implements Serializable {
+public class FilmTemplateW implements Serializable {
     Integer filmNum;
-    List<FilmInfo> filmInfo;
+    List<FilmInfoW> filmInfoW;
 
     public Integer getFilmNum() {
         return filmNum;
@@ -18,19 +18,19 @@ public class FilmTemplate implements Serializable {
         this.filmNum = filmNum;
     }
 
-    public List<FilmInfo> getFilmInfo() {
-        return filmInfo;
+    public List<FilmInfoW> getFilmInfoW() {
+        return filmInfoW;
     }
 
-    public void setFilmInfo(List<FilmInfo> filmInfo) {
-        this.filmInfo = filmInfo;
+    public void setFilmInfoW(List<FilmInfoW> filmInfoW) {
+        this.filmInfoW = filmInfoW;
     }
 
     @Override
     public String toString() {
-        return "FilmTemplate{" +
+        return "FilmTemplateW{" +
                 "filmNum=" + filmNum +
-                ", filmInfo=" + filmInfo +
+                ", filmInfoW=" + filmInfoW +
                 '}';
     }
 }

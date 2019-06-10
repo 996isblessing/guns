@@ -2,7 +2,7 @@ package com.stylefeng.guns.rest.common.persistence.model.index;
 
 import java.io.Serializable;
 
-public class Banner  implements Serializable {
+public class BannerW implements Serializable {
     String bannerId;
     String bannerAddress;
     String bannerUrl;
@@ -33,7 +33,7 @@ public class Banner  implements Serializable {
 
     @Override
     public String toString() {
-        return "Banner{" +
+        return "BannerW{" +
                 "bannerId='" + bannerId + '\'' +
                 ", bannerAddress='" + bannerAddress + '\'' +
                 ", bannerUrl='" + bannerUrl + '\'' +

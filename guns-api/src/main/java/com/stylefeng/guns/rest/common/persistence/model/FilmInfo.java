@@ -15,7 +15,7 @@ public class FilmInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "FilmInfo{" +
+        return "FilmInfoW{" +
                 "filmId=" + filmId +
                 ", filmName='" + filmName + '\'' +
                 ", filmLength='" + filmLength + '\'' +
