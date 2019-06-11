@@ -27,8 +27,8 @@ public class MtimeActorTController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public MtimeActorT queryById(int id){
-        MtimeActorT actorT = iMtimeActorTService.selectById(id);
+    public MtimeActorT queryById( ){
+        MtimeActorT actorT = iMtimeActorTService.selectById(1);
         return actorT;
     }
 
