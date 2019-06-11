@@ -210,7 +210,7 @@ public class FilmServiceImpl implements FilmService {
         filmConditionVoW.setCatInfo(catVoWS);
         filmConditionVoW.setSourceInfo(sourceVoWS);
         filmConditionVoW.setYearInfo(yearVoWS);
-
+        System.out.println(filmConditionVoW);
         return filmConditionVoW;
     }
 
