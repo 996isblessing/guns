@@ -29,15 +29,6 @@ mybatis-plus:
 
 spring:
   application:
-<<<<<<< HEAD
-    name: film-server
-  dubbo:
-    server: true
-    registry: zookeeper://localhost:2181
-  protocal:
-    name: dubbo
-    port: 20880
-=======
     name: film
   dubbo:
     server: true
@@ -45,9 +36,9 @@ spring:
     protocol:
       name: dubbo
       port: 20885
->>>>>>> 35898e4528e131008ff88cbe13daa8a1ca8b3a97
+
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns_film?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: 123456
     filters: log4j,wall,mergeStat

@@ -1,14 +1,12 @@
 package com.stylefeng.guns.rest.modular.order;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.rest.common.persistence.dao.CinemaMapper;
-import com.stylefeng.guns.rest.common.persistence.dao.FieldMapper;
-import com.stylefeng.guns.rest.common.persistence.dao.FilmInfoMapper;
-import com.stylefeng.guns.rest.common.persistence.dao.OrderTMapper;
+import com.stylefeng.guns.rest.common.persistence.dao.*;
 import com.stylefeng.guns.rest.common.persistence.model.FilmInfo;
 import com.stylefeng.guns.rest.common.persistence.model.generator.Cinema;
 import com.stylefeng.guns.rest.common.persistence.model.generator.Field;
 import com.stylefeng.guns.rest.order.model.Order;
+import com.stylefeng.guns.rest.order.model.OrderI;
 import com.stylefeng.guns.rest.order.model.OrderT;
 import com.stylefeng.guns.rest.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,28 +32,31 @@ public class OrderServiceImpl  implements OrderService {
     @Autowired(required = false)
     CinemaMapper cinemaMapper;
 
+    @Autowired(required = false)
+    OrderIMapper orderIMapper;
+
     //生成訂單
     @Override
-    public Order buyTickets(Integer fieldId, Integer[] soldSeats, String seatsName) {
+    public Order buyTickets(Integer fieldId, Integer[] soldSeats, String seatsName,Integer uuid) {
         System.out.println(fieldId+" "+ Arrays.toString(soldSeats)+" "+seatsName);
         Field field = fieldMapper.selectByPrimaryKey(fieldId);
-        String uuid=Integer.toString(new Date().toString().hashCode());
+        String orderid=Integer.toString(new Date().toString().hashCode());
         OrderT orderT = new OrderT();
         orderT.setFieldId(fieldId);
-        orderT.setUuid(uuid);
+        orderT.setUuid(orderid);
         orderT.setSeatsIds(Arrays.toString(soldSeats));
         orderT.setCinemaId(field.getCinemaId());
-        orderT.setSeatsName("4124");
+        orderT.setSeatsName(Arrays.toString(soldSeats).substring(1,soldSeats.length-1));
         orderT.setFilmId(field.getFilmId());
         orderT.setFilmPrice(field.getPrice()+0.0);
         orderT.setOrderPrice(soldSeats.length*field.getPrice()+0.0);
         orderT.setOrderStatus(0);
-        orderT.setOrderUser(3);
+        orderT.setOrderUser(uuid);
         orderT.setOrderTime(new Date());
         System.out.println(orderT);
         orderTMapper.insertNewOrder(orderT);
         Order order = new Order();
-        order.setOrderId(uuid);
+        order.setOrderId(orderid);
         Cinema cinema = cinemaMapper.selectByPrimaryKey(orderT.getCinemaId());
         order.setCinemaName(cinema.getCinemaName());
         order.setFieldTime(field.getHallName());
@@ -63,7 +64,17 @@ public class OrderServiceImpl  implements OrderService {
         order.setFilmName(filmInfos.get(0).getFilmName());
         order.setOrderPrice(soldSeats.length*field.getPrice()+0.0);
         order.setOrderTimestamp(new Date());
-        order.setSeatsName("421");
+        order.setSeatsName(Arrays.toString(soldSeats));
         return order;
+}
+
+    //订单信息
+    @Override
+    public List<OrderI> getOrderInfo(Integer uuid) {
+        List<OrderI> orderInfo = orderIMapper.getOrderInfo(uuid);
+        return orderInfo;
     }
+
+
+
 }

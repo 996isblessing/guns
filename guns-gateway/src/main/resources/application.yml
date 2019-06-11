@@ -10,11 +10,8 @@ jwt:
   md5-key: randomKey      #md5加密混淆key
 
 server:
-<<<<<<< HEAD
-  port: 88 #项目端口
-=======
+
   port: 8080 #项目端口
->>>>>>> 35898e4528e131008ff88cbe13daa8a1ca8b3a97
 
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/rest/**/mapping/*.xml

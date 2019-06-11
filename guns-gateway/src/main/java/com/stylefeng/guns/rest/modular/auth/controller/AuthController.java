@@ -33,7 +33,7 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Reference
+    @Reference(check = false)
     UserService userService;
 
     @Resource(name = "simpleValidator")
