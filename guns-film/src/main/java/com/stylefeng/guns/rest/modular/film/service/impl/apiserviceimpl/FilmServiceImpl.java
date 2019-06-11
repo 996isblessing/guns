@@ -164,7 +164,7 @@ public class FilmServiceImpl implements FilmService {
             top100.add(singletop100);
         }
 
-        indexResultW.setBannerWS(bannerWS);
+        indexResultW.setBanners(bannerWS);
         indexResultW.setHotFilms(hotFilmTemplateW);
         indexResultW.setSoonFilms(soonFilmTemplateW);
         indexResultW.setBoxRanking(filmInfoWList3);
