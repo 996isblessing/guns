@@ -30,9 +30,11 @@ public class FilmControllerW {
         return indexPageInfoW;
     }
 
-    @RequestMapping("/getconditionlist")
+    @RequestMapping("/getConditionList")
     @ResponseBody
     public ConditionResult getConditionList() {
+
+        System.out.println("这里是getConditionList");
         ConditionResult result = new ConditionResult();
         FilmConditionVoW filmCondition = filmService.getFilmCondition();
         result.setStatus(0);

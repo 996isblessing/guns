@@ -2,7 +2,12 @@ package com.stylefeng.guns.rest.modular.film.service.impl.apiserviceimpl;
 
 import com.stylefeng.guns.rest.GunsFilmApplication;
 import com.stylefeng.guns.rest.common.persistence.model.MtimeCatDictT;
+import com.stylefeng.guns.rest.common.persistence.model.MtimeSourceDictT;
+import com.stylefeng.guns.rest.common.persistence.model.MtimeYearDictT;
 import com.stylefeng.guns.rest.common.persistence.model.filmcondition.CatVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.SourceVoW;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.YearVoW;
 import com.stylefeng.guns.rest.modular.film.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +42,8 @@ public class FilmServiceImplTest {
 
     @Test
     public void mytest() {
+        FilmConditionVoW filmConditionVoW = new FilmConditionVoW();
+
         List<MtimeCatDictT> catListT = catService.selectList(null);
         ArrayList<CatVoW> catVoWS = new ArrayList<>();
         for (MtimeCatDictT t : catListT) {
@@ -45,7 +52,31 @@ public class FilmServiceImplTest {
             catVoW.setCatName(t.getShowName());
             catVoWS.add(catVoW);
         }
-        System.out.println(catVoWS);
+
+        //
+        List<MtimeSourceDictT> sourceList = sourceService.selectList(null);
+        ArrayList<SourceVoW> sourceVoWS = new ArrayList<>();
+        for (MtimeSourceDictT t : sourceList) {
+            SourceVoW sourceVoW = new SourceVoW();
+            sourceVoW.setSourceId(t.getUuid().toString());
+            sourceVoW.setSourceName(t.getShowName());
+            sourceVoWS.add(sourceVoW);
+        }
+
+        //
+        List<MtimeYearDictT> yearList = yearService.selectList(null);
+        ArrayList<YearVoW> yearVoWS = new ArrayList<>();
+        for (MtimeYearDictT t : yearList) {
+            YearVoW yearVoW = new YearVoW();
+            yearVoW.setYearId(t.getUuid().toString());
+            yearVoW.setYearName(t.getShowName());
+            yearVoWS.add(yearVoW);
+        }
+        filmConditionVoW.setCatInfo(catVoWS);
+        filmConditionVoW.setSourceInfo(sourceVoWS);
+        filmConditionVoW.setYearInfo(yearVoWS);
+        System.out.println(filmConditionVoW);
+
     }
 
 }

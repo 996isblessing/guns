@@ -1,5 +1,6 @@
 package com.stylefeng.guns.rest;
 
+import org.I0Itec.zkclient.Gateway;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -13,11 +14,9 @@ public class GunsRestServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-<<<<<<< HEAD
-        return builder.sources(GunsGatewayApplication.class);
-=======
+
         return builder.sources(Gateway.class);
->>>>>>> 35898e4528e131008ff88cbe13daa8a1ca8b3a97
+
     }
 
 }
