@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.stylefeng.guns.rest.common.persistence.model.filmcondition.ConditionResult;
 import com.stylefeng.guns.rest.common.persistence.model.filmcondition.FilmConditionVoW;
 import com.stylefeng.guns.rest.common.persistence.model.index.IndexPageInfoW;
 import com.stylefeng.guns.rest.common.persistence.model.index.IndexResultW;
@@ -19,10 +20,9 @@ public class FilmControllerW {
     @RequestMapping("/getIndex")
     @ResponseBody
     public IndexPageInfoW getIndex() {
-        System.out.println("1");
-        System.out.println("2");
+
         IndexResultW indexResultW = filmService.queryIndexMsg();
-        System.out.println(indexResultW);
+
         IndexPageInfoW indexPageInfoW = new IndexPageInfoW();
         indexPageInfoW.setData(indexResultW);
         indexPageInfoW.setStatus(0);
@@ -32,9 +32,14 @@ public class FilmControllerW {
 
     @RequestMapping("/getConditionList")
     @ResponseBody
-    public FilmConditionVoW getConditionList() {
+    public ConditionResult getConditionList() {
+
+        System.out.println("这里是getConditionList");
+        ConditionResult result = new ConditionResult();
         FilmConditionVoW filmCondition = filmService.getFilmCondition();
-        return filmCondition;
+        result.setStatus(0);
+        result.setData(filmCondition);
+        return result;
     }
 
     @RequestMapping("/filmtest")

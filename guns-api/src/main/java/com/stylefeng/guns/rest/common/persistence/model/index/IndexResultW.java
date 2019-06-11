@@ -10,19 +10,19 @@ import java.util.List;
  * 对应data
  */
 public class IndexResultW implements Serializable {
-    List<BannerW> bannerWS;
+    List<BannerW> banners;
     FilmTemplateW hotFilms;
     FilmTemplateW soonFilms;
     List<FilmInfoW> boxRanking;
     List<FilmInfoW> expectRanking;
     List<FilmInfoW> top100;
 
-    public List<BannerW> getBannerWS() {
-        return bannerWS;
+    public List<BannerW> getBanners() {
+        return banners;
     }
 
-    public void setBannerWS(List<BannerW> bannerWS) {
-        this.bannerWS = bannerWS;
+    public void setBanners(List<BannerW> banners) {
+        this.banners = banners;
     }
 
     public FilmTemplateW getHotFilms() {
@@ -68,7 +68,7 @@ public class IndexResultW implements Serializable {
     @Override
     public String toString() {
         return "IndexResultW{" +
-                "bannerWS=" + bannerWS +
+                "banners=" + banners +
                 ", hotFilms=" + hotFilms +
                 ", soonFilms=" + soonFilms +
                 ", boxRanking=" + boxRanking +

@@ -164,7 +164,7 @@ public class FilmServiceImpl implements FilmService {
             top100.add(singletop100);
         }
 
-        indexResultW.setBannerWS(bannerWS);
+        indexResultW.setBanners(bannerWS);
         indexResultW.setHotFilms(hotFilmTemplateW);
         indexResultW.setSoonFilms(soonFilmTemplateW);
         indexResultW.setBoxRanking(filmInfoWList3);
@@ -210,7 +210,7 @@ public class FilmServiceImpl implements FilmService {
         filmConditionVoW.setCatInfo(catVoWS);
         filmConditionVoW.setSourceInfo(sourceVoWS);
         filmConditionVoW.setYearInfo(yearVoWS);
-
+        System.out.println(filmConditionVoW);
         return filmConditionVoW;
     }
 

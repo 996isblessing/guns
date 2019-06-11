@@ -1,5 +1,6 @@
 package com.stylefeng.guns.rest;
 
+import org.I0Itec.zkclient.Gateway;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
