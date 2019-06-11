@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.common.persistence.dao.FilmSearchDetailMapper">
+    <resultMap id="filmSearchMap" type="com.stylefeng.guns.rest.common.persistence.model.FilmSearchVO">
+        <result column="film_id" property="filmId"/>
+        <result column="film_name" property="filmName"/>
+        <result column="film_type" property="filmType"/>
+        <result column="img_address" property="imgAddress"/>
+        <result column="film_status" property="filmStatus"/>
+        <result column="film_time" property="filmTime"/>
+        <result column="film_score" property="filmScore"/>
+        <result column="film_source" property="filmSource"/>
+        <result column="uuid" property="catId"/>
+        <result column="film_cats" property="filmCats" typeHandler="com.stylefeng.guns.rest.common.persistence.handler.StringToArrayHandler"/>
+    </resultMap>
+    <select id="queryFilmSearchContentT" resultMap="filmSearchMap">
+        SELECT
+        mtime_film_t.UUID,
+        mtime_film_t.film_name,
+        mtime_film_t.film_status,
+        mtime_film_t.film_score,
+        mtime_film_t.film_type,
+        mtime_film_t.film_time,
+        mtime_film_t.img_address,
+        mtime_film_t.film_source,
+        mtime_source_dict_t.UUID,
+        mtime_source_dict_t.show_name,
+        mtime_year_dict_t.UUID,
+        mtime_year_dict_t.show_name,
+        mtime_cat_dict_t.uuid
+        FROM
+        mtime_film_t,
+        mtime_source_dict_t,
+        mtime_year_dict_t,
+        mtime_cat_dict_t
+        <where>
+            mtime_film_t.film_source=mtime_source_dict_t.UUID
+            and  mtime_film_t.film_date=mtime_year_dict_t.uuid
+            and  mtime_film_t.film_cats=mtime_cat_dict_t.uuid
+            <if test="filmStatus!=null">
+                and mtime_film_t.film_status=#{filmStatus}
+            </if>
+            <if test="catId!=null">
+                and  mtime_film_t.film_cats=#{catId}
+            </if>
+            <if test="sourceId!=null">
+                and mtime_source_dict_t.uuid=#{sourceId}
+            </if>
+            <if test="yearId!=null">
+                and  mtime_year_dict_t.uuid=#{yearId}
+            </if>
+        </where>
+        ORDER BY #{sort}
+        limit #{pageSize} offset #{offset}
+
+    </select>
+    <select id="queryFilmSearchContentTCount" resultType="int">
+        select count(*)
+        FROM
+        mtime_film_t,
+        mtime_source_dict_t,
+        mtime_year_dict_t,
+        mtime_cat_dict_t
+        <where>
+            mtime_film_t.film_source=mtime_source_dict_t.UUID
+            and  mtime_film_t.film_date=mtime_year_dict_t.uuid
+            and  mtime_film_t.film_cats=mtime_cat_dict_t.uuid
+            <if test="filmStatus!=null">
+                and mtime_film_t.film_status=#{filmStatus}
+            </if>
+            <if test="catId!=null">
+                and  mtime_film_t.film_cats=#{catId}
+            </if>
+            <if test="sourceId!=null">
+                and mtime_source_dict_t.uuid=#{sourceId}
+            </if>
+            <if test="yearId!=null">
+                and  mtime_year_dict_t.uuid=#{yearId}
+            </if>
+        </where>
+        ORDER BY #{sort}
+    </select>
+</mapper>

@@ -39,7 +39,7 @@ public class CinemaServiceImpl implements CinemaService {
     FilmInfoMapper filmInfoMapper;
     @Autowired(required = false)
     HallFilmInfoMapper hallFilmInfoMapper;
-    @Autowired
+    @Autowired(required = false)
     HallInfoMapper hallInfoMapper;
 
     @Override
