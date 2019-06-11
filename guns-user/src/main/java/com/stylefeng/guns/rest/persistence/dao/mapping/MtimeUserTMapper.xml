@@ -7,7 +7,7 @@
         <id column="UUID" property="uuid" />
         <result column="user_name" property="username" />
         <result column="user_pwd" property="password" />
-        <result column="nick_name" property="nickName" />
+        <result column="nick_name" property="nickname" />
         <result column="user_sex" property="sex" />
         <result column="birthday" property="birthday" />
         <result column="email" property="email" />
@@ -19,5 +19,53 @@
         <result column="begin_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
+
+    <insert id="userRegister">
+        insert into mtime_user_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_name,user_pwd,
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                user_phone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{username},#{password},
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select user_name,user_pwd from mtime_user_t where user_name = #{username}
+    </select>
+
+    <update id="UpdateUserInfo" >
+        update mtime_user_t
+        <set>
+            <if test="nickname!=null">nick_name = #{nickname},</if>
+            <if test="email!=null">email = #{email,jdbcType=VARCHAR}, </if>
+            <if test="phone!=null">user_phone = #{phone},</if>
+            <if test="sex!=null">user_sex = #{sex},</if>
+            <if test="birthday!=null">birthday = #{birthday},</if>
+            <if test="lifeState!=null">life_state = #{lifeState},</if>
+            <if test="biography!=null">biography = #{biography},</if>
+            <if test="address!=null">address = #{address},</if>
+            update_time = now()
+        </set>
+        where UUID = #{uuid}
+    </update>
 
 </mapper>
